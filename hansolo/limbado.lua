@@ -43,9 +43,9 @@ Citizen.CreateThread(function()
 			if IsControlJustReleased(0, config.key) and (flag_falling and flag_swimming and flag_inside) then
 				ClearPedTasksImmediately(ped)
 				if config.preset then
-					SetEntityCoordsNoOffset(ped,xCoords["x"],xCoords["y"],xCoords["z"],0,0,0)
+					SetEntityCoordsNoOffset(ped,xCoords["x"],xCoords["y"],xCoords["z"]+1.5,0,0,0)
 				else
-                    SetEntityCoordsNoOffset(ped,xCoords["x"],xCoords["y"],xCoords["z"],0,0,0)
+                    SetEntityCoordsNoOffset(ped,xCoords["x"],xCoords["y"],xCoords["z"]+1.5,0,0,0)
 				end
 			
 				if config.freeze then

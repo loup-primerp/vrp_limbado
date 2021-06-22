@@ -1,6 +1,5 @@
-
 -----------------------------------------------------------------------------------------------------------------------------------------
--- LIMBADO ### LOBINHO #CAMBORIU CITY
+-- LIMBADO ### DISCORD Lobinho#1315 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 Citizen.CreateThread(function()
@@ -10,21 +9,11 @@ Citizen.CreateThread(function()
         local veh = GetVehiclePedIsUsing(ped)
         local coords = GetEntityCoords(ped)
         local _,xCoords = GetNthClosestVehicleNode(coords["x"],coords["y"],coords["z"],1,0,0,0)
-
-       
-		
-
-
 		_coords = GetEntityCoords(ped)
 		_, z = GetGroundZFor_3dCoord(_coords.x, _coords.y, 150.0, 0) 
-		
-      
-
-
 		if _coords.z < config.z_check then
             if IsPedInAnyVehicle(ped) then
                 ped = veh
-                --drawTxt("SAIA DO CARRO E PRECIONE ~g~E~s~",4,0.5,0.92,0.35,255,255,255,255)
                SetEntityCoordsNoOffset(ped,xCoords["x"],xCoords["y"],xCoords["z"],0,0,0)
                if config.freeze then
                 Citizen.CreateThread(function()
@@ -37,12 +26,7 @@ Citizen.CreateThread(function()
                     FreezeEntityPosition(ped, false)
                 end)
             end
-
-
             end
-
-
-
 			local flag_swimming, flag_falling, flag_inside = true, true, true
 			if config.check_swimming and (IsPedSwimming(ped) or IsPedSwimmingUnderWater(ped)) then
 				flag_swimming = false
@@ -53,13 +37,8 @@ Citizen.CreateThread(function()
 			if config.check_inside and not IsPedFalling(ped) and z > _coords.z then 
 				flag_inside = false
 			end
-			
 			if flag_falling and flag_swimming and flag_inside then
-				
                 drawTxt(config.displayText,4,0.5,0.92,0.35,255,255,255,255)
-                
-
-
 			end
 			if IsControlJustReleased(0, config.key) and (flag_falling and flag_swimming and flag_inside) then
 				ClearPedTasksImmediately(ped)
@@ -85,9 +64,6 @@ Citizen.CreateThread(function()
 		Citizen.Wait(5)
 	end
 end)
-
-
-
 function drawTxt(text,font,x,y,scale,r,g,b,a)
 	SetTextFont(font)
 	SetTextScale(scale,scale)

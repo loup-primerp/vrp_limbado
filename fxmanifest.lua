@@ -1,12 +1,10 @@
-client_script "@vrp/lib/lib.lua" --Para remover esta pendencia de todos scripts, execute no console o comando "uninstall"
-
 fx_version "bodacious"
 game "gta5"
 
 author 'LOUP - LOBINHO'
-description 'LOMBADO'
+description 'VRP LIMBADO'
 version '1.0'
-contact 'E-mail: lobogeekplay@gmail.com'
+contact 'DISCORD Lobinho#1315'
 
 client_scripts {
 	'config/config.lua',

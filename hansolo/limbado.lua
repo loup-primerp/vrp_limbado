@@ -15,17 +15,6 @@ Citizen.CreateThread(function()
             if IsPedInAnyVehicle(ped) then
                 ped = veh
                SetEntityCoordsNoOffset(ped,xCoords["x"],xCoords["y"],xCoords["z"],0,0,0)
-               if config.freeze then
-                Citizen.CreateThread(function()
-                    FreezeEntityPosition(ped, true)
-                    local timer = config.freeze_time
-                    while timer > 0 do
-                        timer = timer - 1
-                        Citizen.Wait(1000)
-                    end
-                    FreezeEntityPosition(ped, false)
-                end)
-            end
             end
 			local flag_swimming, flag_falling, flag_inside = true, true, true
 			if config.check_swimming and (IsPedSwimming(ped) or IsPedSwimmingUnderWater(ped)) then
@@ -37,31 +26,19 @@ Citizen.CreateThread(function()
 			if config.check_inside and not IsPedFalling(ped) and z > _coords.z then 
 				flag_inside = false
 			end
-			if flag_falling and flag_swimming and flag_inside then
-                drawTxt(config.displayText,4,0.5,0.92,0.35,255,255,255,255)
-			end
-			if IsControlJustReleased(0, config.key) and (flag_falling and flag_swimming and flag_inside) then
-				ClearPedTasksImmediately(ped)
-				if config.preset then
-					SetEntityCoordsNoOffset(ped,xCoords["x"],xCoords["y"],xCoords["z"]+1.5,0,0,0)
-				else
-                    SetEntityCoordsNoOffset(ped,xCoords["x"],xCoords["y"],xCoords["z"]+1.5,0,0,0)
-				end
 			
-				if config.freeze then
-					Citizen.CreateThread(function()
-						FreezeEntityPosition(ped, true)
-						local timer = config.freeze_time
-						while timer > 0 do
-							timer = timer - 1
-							Citizen.Wait(1000)
-						end
-						FreezeEntityPosition(ped, false)
-					end)
-				end
+			if (flag_falling and flag_swimming and flag_inside) then
+				ClearPedTasksImmediately(ped)
+				
+					SetEntityCoordsNoOffset(ped,xCoords["x"],xCoords["y"],xCoords["z"]+1.5,0,0,0)
+				
+			
+			
+				
+				
 			end
 		end
-		Citizen.Wait(5)
+		Citizen.Wait(500)
 	end
 end)
 function drawTxt(text,font,x,y,scale,r,g,b,a)
